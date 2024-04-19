@@ -275,7 +275,7 @@ class _DetailScreenState extends State<DetailScreen> {
               width: 300,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/nike_shoe.png'),
+                  image: AssetImage('assets/3.png'),
                   fit: BoxFit.cover,
                 ),
               ),

@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:sneaker_store/components/appdawer.dart';
+import 'package:sneaker_store/screens/brands_page.dart';
 import 'package:sneaker_store/screens/cart_page.dart';
+import 'package:sneaker_store/screens/catagory_page.dart';
 import 'package:sneaker_store/screens/detail_page.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,27 +20,13 @@ class HomeScreen extends StatelessWidget {
           children: [
             userProfileBar(),
             SizedBox(height: 5),
-            roundedCarouselWithIcons(),
+            
+            roundedCarousel(),
             SizedBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                brandLogos(
-                    'https://seeklogo.com/images/P/puma-logo-9092D1BD56-seeklogo.com.png',
-                    () {}),
-                brandLogos(
-                    'https://seeklogo.com/images/A/adidas-logo-DE36EE9B0E-seeklogo.com.png',
-                    () {}),
-                brandLogos(
-                    'https://seeklogo.com/images/N/Nike_Plus-logo-548F1B3E8F-seeklogo.com.png',
-                    () {}),
-                brandLogos(
-                    'https://seeklogo.com/images/R/reebok-classic-logo-8620627707-seeklogo.com.png',
-                    () {}),
-              ],
-            ),
+            Text('Shop Your Favourite Brands From Here ',style: TextStyle(fontWeight: FontWeight.bold,)),
+            brandsLogo(),
             popularBrands(),
-            // Add some space below the popular brands
+            
           ],
         ),
       ),
@@ -74,6 +62,8 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+
+
 Widget userProfileBar() => Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -92,7 +82,7 @@ Widget userProfileBar() => Row(
       ],
     );
 
-Widget roundedCarouselWithIcons() {
+Widget roundedCarousel() {
   return Column(
     children: [
       Container(
@@ -185,7 +175,7 @@ Widget popularBrands() => Expanded(
                               "New Arrival",
                               style: TextStyle(
                                 fontSize: 10,
-                                color: Colors.grey,
+                                color: Color.fromARGB(255, 43, 42, 42),
                               ),
                             ),
                             Text(
@@ -293,7 +283,7 @@ final List<Brand> brands = [
   Brand(
     name: "Adidas Superstar",
     price: 100.0,
-    image: "",
+    image: "assets/3.png",
   ),
   Brand(
     name: "Puma Suede",
