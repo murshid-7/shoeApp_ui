@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sneaker_store/screens/catagory_page.dart';
-import 'package:sneaker_store/screens/home_page.dart';
 
-class brandsLogo extends StatelessWidget {
-  const brandsLogo({
+class BrandsLogo extends StatelessWidget {
+  const BrandsLogo({
     super.key,
   });
 
@@ -39,4 +38,19 @@ class brandsLogo extends StatelessWidget {
       ],
     );
   }
+}
+
+
+Widget brandLogos(String imagePath, Function() onPressed) {
+  return Expanded(
+    child: TextButton(
+      onPressed: onPressed,
+      child: Image.network(
+        imagePath,
+        width: 50,
+        height: 40,
+        fit: BoxFit.contain,
+      ),
+    ),
+  );
 }

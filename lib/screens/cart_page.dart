@@ -7,12 +7,19 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shopping Cart'),
+        backgroundColor: Colors.black,
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Your Cart',style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
       ),
+      
+
       body: Column(
         children: [
           SizedBox(height: 20),
-          ProductItem('Product Name', 'M', Icons.delete, Icons.edit),
+          ProductItem('Product Name', 'price \nlocation', Icons.delete, Icons.edit),
           SizedBox(height: 20),
           ProductItem(
               'Product Name', 'Price \nLocation', Icons.delete, Icons.edit),
@@ -26,13 +33,18 @@ class CartPage extends StatelessWidget {
   }
 
   Widget ProductItem(
-      String title, String subtitle, IconData deleteIcon, IconData editIcon,) {
+    String title,
+    String subtitle,
+    IconData deleteIcon,
+    IconData editIcon,
+  ) {
     return Card(
       elevation: 6,
       color: Colors.amber,
       margin: EdgeInsets.symmetric(horizontal: 16),
       child: ListTile(
-        leading: Image.asset('assets/images/shoesz industries (1).png', width: 50, height: 50), // Add the image here
+        leading: Image.asset('assets/images/shoesz industries (1).png',
+            width: 50, height: 50), 
         title: Text(title),
         subtitle: Text(subtitle),
         trailing: Row(
@@ -52,5 +64,3 @@ class CartPage extends StatelessWidget {
     );
   }
 }
-
-

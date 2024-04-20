@@ -3,14 +3,14 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sneaker_store/screens/cart_page.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key, Key? customKey});
+  const DetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<DetailScreen> createState() => _DetailScreenState();
+  _DetailScreenState createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  List<Color> colors = [
+  static const List<Color> colors = [
     Colors.black,
     Colors.yellow,
     Colors.greenAccent,
@@ -28,7 +28,7 @@ class _DetailScreenState extends State<DetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            headerContainer(context), // Pass the context here
+            headerContainer(),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
@@ -56,9 +56,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         itemSize: 30,
                         allowHalfRating: true,
                         initialRating: 4,
-                        onRatingUpdate: (rating) {
-                          setState(() {});
-                        },
+                        onRatingUpdate: (rating) {},
                         itemBuilder: (context, _) {
                           return const Icon(Icons.star, color: Colors.amber);
                         },
@@ -90,12 +88,12 @@ class _DetailScreenState extends State<DetailScreen> {
                         return Container(
                           height: 50,
                           width: 50,
-                          margin: const EdgeInsets.only(right: 10),
+                          margin: const EdgeInsets.only(right: 20),
                           child: TextButton(
                             onPressed: () {},
                             style: ButtonStyle(
                               overlayColor: MaterialStateProperty.all(
-                                  Colors.deepPurple.shade700),
+                                  Colors.black),
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.white),
                               shape: MaterialStateProperty.all(
@@ -130,18 +128,17 @@ class _DetailScreenState extends State<DetailScreen> {
                       SizedBox(
                         height: 30,
                         width: 160,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: colors.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: CircleAvatar(
-                                radius: 10,
-                                backgroundColor: colors[index],
+                        child: Row(
+                          children: [
+                            for (final colors in colors)
+                              Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: CircleAvatar(
+                                  radius: 10,
+                                  backgroundColor: colors,
+                                ),
                               ),
-                            );
-                          },
+                          ],
                         ),
                       ),
                     ],
@@ -171,7 +168,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               color: Colors.white,
                             ),
                             Text(
-                              "280",
+                              "120",
                               style: TextStyle(
                                 fontSize: 21,
                                 fontWeight: FontWeight.w700,
@@ -216,8 +213,10 @@ class _DetailScreenState extends State<DetailScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CartPage()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CartPage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
@@ -236,25 +235,10 @@ class _DetailScreenState extends State<DetailScreen> {
     );
   }
 
-  Widget headerContainer(BuildContext context) => Container(
+  Widget headerContainer() => Container(
         height: 320,
         width: double.infinity,
         padding: const EdgeInsets.all(20),
-        // decoration: const BoxDecoration(
-        //   // gradient: LinearGradient(
-        //   //   begin: Alignment.topLeft,
-        //   //   end: Alignment.bottomRight,
-        //   //   colors: [
-        //   //     Colors.lightBlue,
-        //   //     Colors.deepPurple,
-        //   //   ],
-        //   // ),
-        //   // color: Colors.black,
-        //   borderRadius: BorderRadius.only(
-        //     bottomLeft: Radius.circular(15),
-        //     bottomRight: Radius.circular(15),
-        //   ),
-        // ),
         child: Center(
           child: Container(
             height: 200,

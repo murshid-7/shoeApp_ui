@@ -5,7 +5,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:sneaker_store/components/appdawer.dart';
 import 'package:sneaker_store/screens/brands_page.dart';
 import 'package:sneaker_store/screens/cart_page.dart';
-import 'package:sneaker_store/screens/catagory_page.dart';
 import 'package:sneaker_store/screens/detail_page.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,6 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
               'Shop Your Favourite Brands From Here ',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            brandsLogo(),
+            BrandsLogo(),
             popularBrands(),
           ],
         ),
@@ -43,8 +43,12 @@ class HomeScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              BottomNavWidget(onTap: () {}, icon: Icons.home),
-              BottomNavWidget(onTap: () {}, icon: Icons.article),
+              BottomNavWidget(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                  },
+                  icon: Icons.home),
               BottomNavWidget(
                   onTap: () {
                     Navigator.push(
@@ -119,20 +123,6 @@ Widget roundedCarousel() {
   );
 }
 
-Widget brandLogos(String imagePath, Function() onPressed) {
-  return Expanded(
-    child: TextButton(
-      onPressed: onPressed,
-      child: Image.network(
-        imagePath,
-        width: 50,
-        height: 40,
-        fit: BoxFit.contain,
-      ),
-    ),
-  );
-}
-
 Widget popularBrands() => Expanded(
       child: ListView.builder(
         itemCount: brands.length,
@@ -159,7 +149,7 @@ Widget popularBrands() => Expanded(
                           height: 170,
                           width: 170,
                           decoration: BoxDecoration(
-                            color: Colors.deepPurple.shade700,
+                            // color: Colors.black,
                             borderRadius: BorderRadius.circular(25),
                           ),
                           child: Center(
@@ -206,10 +196,10 @@ Widget popularBrands() => Expanded(
                   ),
                   Positioned(
                     top: 30,
-                    left: 18,
+                    left: 10,
                     child: Container(
                       height: 42,
-                      width: 42,
+                      width: 50,
                       decoration: BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(12),
@@ -303,7 +293,7 @@ class BottomNavWidget extends StatelessWidget {
       onTap: onTap,
       child: Icon(
         icon,
-        color: Colors.white,
+        color: Color.fromARGB(255, 253, 253, 253),
         size: 28,
       ),
     );
