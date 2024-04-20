@@ -14,7 +14,7 @@ class GetStart extends StatelessWidget {
         children: [
           Transform.rotate(
             angle: -.4,
-            child: Image.asset('assets/images/3.png'),
+            child: Image.asset('assets/3.png'),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 40),
@@ -41,6 +41,7 @@ class GetStart extends StatelessWidget {
               },
             )),
             child: Container(
+              
               decoration: BoxDecoration(
                   color: Colors.black, borderRadius: BorderRadius.circular(12)),
               padding: EdgeInsets.all(24.0),

@@ -20,13 +20,14 @@ class HomeScreen extends StatelessWidget {
           children: [
             userProfileBar(),
             SizedBox(height: 5),
-            
             roundedCarousel(),
             SizedBox(height: 5),
-            Text('Shop Your Favourite Brands From Here ',style: TextStyle(fontWeight: FontWeight.bold,)),
+            Text(
+              'Shop Your Favourite Brands From Here ',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             brandsLogo(),
             popularBrands(),
-            
           ],
         ),
       ),
@@ -61,8 +62,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
 
 Widget userProfileBar() => Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,6 +162,14 @@ Widget popularBrands() => Expanded(
                             color: Colors.deepPurple.shade700,
                             borderRadius: BorderRadius.circular(25),
                           ),
+                          child: Center(
+                            child: Image.asset(
+                              brand.image,
+                              fit: BoxFit.cover,
+                              height: double.infinity,
+                              width: double.infinity,
+                            ),
+                          ),
                         ),
                         const SizedBox(
                           width: 10,
@@ -195,25 +202,6 @@ Widget popularBrands() => Expanded(
                           ],
                         ),
                       ],
-                    ),
-                  ),
-                  Positioned(
-                    top: 100,
-                    left: -40,
-                    child: Transform(
-                      transform: Matrix4.rotationZ(-0.5),
-                      child: Container(
-                        height: 160,
-                        width: 260,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                              "assets/${brand.image}",
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
                     ),
                   ),
                   Positioned(
@@ -258,7 +246,7 @@ class BrandDetails extends StatelessWidget {
           children: [
             Text("Brand Name: ${brand.name}"),
             Text("Price: \$${brand.price}"),
-            Image.asset("assets/${brand.image}"),
+            Image.asset(brand.image),
           ],
         ),
       ),
@@ -283,16 +271,21 @@ final List<Brand> brands = [
   Brand(
     name: "Adidas Superstar",
     price: 100.0,
-    image: "assets/3.png",
+    image: "assets/adidas.webp",
   ),
   Brand(
     name: "Puma Suede",
     price: 90.0,
-    image: "",
+    image: "assets/puma.webp",
   ),
   Brand(
     name: "Reebok Max 2",
     price: 110.0,
+    image: "assets/reebok_max_2.png",
+  ),
+  Brand(
+    name: "Flip Flop max",
+    price: 50.0,
     image: "",
   ),
 ];

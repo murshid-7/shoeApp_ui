@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home:LoginPage(),
       // home: SplashScreen(),
-      // home: GetStart(),
-      home: HomeScreen(),
+      home: GetStart(),
+      // home: HomeScreen(),
     );
   }
 }

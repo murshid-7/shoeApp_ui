@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class AddProduct extends StatelessWidget {
-  const AddProduct({super.key});
+  const AddProduct({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,38 +15,61 @@ class AddProduct extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton.icon(
-                  onPressed: () => print('hello'),
-                  icon: const Icon(Icons.add_a_photo),
-                  label: const Text('Add Image'),
+            Container(
+              padding: const EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 245, 244, 244),
+                borderRadius: BorderRadius.circular(8.0),
+                border: Border.all(
+                  color: Colors.black,
+                  width: 1.0,
                 ),
-              ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.add_a_photo),
+                    label: const Text('Add Image',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 125, 123, 123))),
+                  ),
+                ],
+              ),
             ),
+
             const SizedBox(height: 20.0),
 
-            const TextField(
+            TextField(
               decoration: InputDecoration(
                 labelText: 'Product Name',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
               ),
             ),
             const SizedBox(height: 10.0),
 
             // Price field
-            const TextField(
+            TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Price',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
               ),
             ),
             const SizedBox(height: 10.0),
 
-            const TextField(
+            TextField(
               maxLines: null,
               decoration: InputDecoration(
                 labelText: 'Description',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
               ),
             ),
             const SizedBox(height: 20.0),
@@ -60,6 +85,10 @@ class AddProduct extends StatelessWidget {
             onPressed: () {},
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.orange,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              elevation: 4,
             ),
             child: const Padding(
               padding: EdgeInsets.all(16.0),

@@ -57,9 +57,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         allowHalfRating: true,
                         initialRating: 4,
                         onRatingUpdate: (rating) {
-                          setState(() {
-                            
-                          });
+                          setState(() {});
                         },
                         itemBuilder: (context, _) {
                           return const Icon(Icons.star, color: Colors.amber);
@@ -87,7 +85,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     height: 45,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 5, 
+                      itemCount: 5,
                       itemBuilder: (context, index) {
                         return Container(
                           height: 50,
@@ -189,7 +187,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "",
+                              "A pair of black running shoes, has regular styling, lace-up detail Breathable Support :Lightweight knit material wraps your foot in breathable comfort.",
                               style: TextStyle(
                                 fontSize: 15,
                               ),
@@ -222,10 +220,9 @@ class _DetailScreenState extends State<DetailScreen> {
                       MaterialPageRoute(builder: (context) => CartPage()));
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, 
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 15), 
+                  backgroundColor: Colors.blue,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 ),
                 child: const Text(
                   'Add to Cart',
@@ -243,44 +240,32 @@ class _DetailScreenState extends State<DetailScreen> {
         height: 320,
         width: double.infinity,
         padding: const EdgeInsets.all(20),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.lightBlue,
-              Colors.deepPurple,
-            ],
-          ),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(15),
-            bottomRight: Radius.circular(15),
-          ),
-        ),
-        child: Wrap(
-          runSpacing: 30,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: const Icon(
-                Icons.arrow_back,
-                size: 20,
-                color: Colors.white,
+        // decoration: const BoxDecoration(
+        //   // gradient: LinearGradient(
+        //   //   begin: Alignment.topLeft,
+        //   //   end: Alignment.bottomRight,
+        //   //   colors: [
+        //   //     Colors.lightBlue,
+        //   //     Colors.deepPurple,
+        //   //   ],
+        //   // ),
+        //   // color: Colors.black,
+        //   borderRadius: BorderRadius.only(
+        //     bottomLeft: Radius.circular(15),
+        //     bottomRight: Radius.circular(15),
+        //   ),
+        // ),
+        child: Center(
+          child: Container(
+            height: 200,
+            width: 300,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/nike1.png'),
+                fit: BoxFit.cover,
               ),
             ),
-            Container(
-              height: 200,
-              width: 300,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/3.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       );
 }

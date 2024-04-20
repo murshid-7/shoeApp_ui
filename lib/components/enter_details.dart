@@ -15,7 +15,6 @@ class EnterDetails extends StatelessWidget {
           children: [
             SizedBox(height: 10.0),
 
-            // Input fields
             TextField(
               decoration: InputDecoration(
                 labelText: 'Full Name',
