@@ -14,7 +14,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:sneaker_store/components/add_products.dart';
+import 'package:sneaker_store/widgets/add_products.dart';
 import 'package:sneaker_store/screens/product_chart.dart';
 
 class Drawer1 extends StatelessWidget {

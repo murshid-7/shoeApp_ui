@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sneaker_store/screens/brands/puma.dart';
 import 'package:sneaker_store/screens/catagory_page.dart';
 
 class BrandsLogo extends StatelessWidget {
@@ -15,7 +16,7 @@ class BrandsLogo extends StatelessWidget {
             'https://seeklogo.com/images/P/puma-logo-9092D1BD56-seeklogo.com.png',
             () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => PumaPage()));
+              .push(MaterialPageRoute(builder: (context) => PumaStore()));
         }),
         brandLogos(
             'https://seeklogo.com/images/A/adidas-logo-DE36EE9B0E-seeklogo.com.png',

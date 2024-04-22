@@ -1,13 +1,13 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:sneaker_store/components/login_field.dart';
+import 'package:sneaker_store/widgets/login_field.dart';
 import 'package:sneaker_store/screens/home_page.dart';
 
 
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key});
+class LoginPage1 extends StatelessWidget {
+  LoginPage1({Key? key});
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();

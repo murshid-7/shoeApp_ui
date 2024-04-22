@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:sneaker_store/components/appdawer.dart';
+import 'package:sneaker_store/widgets/appdawer.dart';
 import 'package:sneaker_store/screens/brands_page.dart';
 import 'package:sneaker_store/screens/cart_page.dart';
 import 'package:sneaker_store/screens/detail_page.dart';
@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      // appBar: AppBar(),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(

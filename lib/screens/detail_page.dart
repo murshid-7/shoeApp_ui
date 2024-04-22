@@ -21,7 +21,11 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product Details'),
+        title: const Text(
+          'Product Details',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.black,
       ),
       backgroundColor: const Color.fromARGB(248, 255, 255, 255),
       body: SingleChildScrollView(
@@ -92,8 +96,8 @@ class _DetailScreenState extends State<DetailScreen> {
                           child: TextButton(
                             onPressed: () {},
                             style: ButtonStyle(
-                              overlayColor: MaterialStateProperty.all(
-                                  Colors.black),
+                              overlayColor:
+                                  MaterialStateProperty.all(Colors.black),
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.white),
                               shape: MaterialStateProperty.all(
