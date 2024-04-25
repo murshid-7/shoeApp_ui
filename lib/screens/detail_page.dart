@@ -3,7 +3,14 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sneaker_store/screens/cart_page.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  final String name;
+  final String price;
+  final String disciption;
+  const DetailScreen(
+      {super.key,
+      required this.name,
+      required this.price,
+      required this.disciption});
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -38,17 +45,17 @@ class _DetailScreenState extends State<DetailScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Nike Air Max 270",
-                    style: TextStyle(
+                  Text(
+                    widget.name,
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text(
-                    "Build For Natural, Motion, The Shoe Brands",
-                    style: TextStyle(
+                  Text(
+                    widget.disciption,
+                    style: const TextStyle(
                       fontSize: 15,
                     ),
                   ),

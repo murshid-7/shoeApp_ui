@@ -69,9 +69,13 @@ class LoginPage1 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+
+                          
+                        },
                         child: Text(
                           'Forgot password?',
+
                           style: TextStyle(color: Colors.grey[800]),
                         ),
                       ),

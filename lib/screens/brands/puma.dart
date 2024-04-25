@@ -9,11 +9,11 @@ class PumaStore extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 8, 
+        // elevation: 8, 
         toolbarHeight: 80, 
         title: Text(
           'Puma Store',
-          style: TextStyle(fontSize: 24), // Increase font size
+          style: TextStyle(fontSize: 24), 
         ),
       ),
       body: ListView.builder(
@@ -136,4 +136,12 @@ final List<Brand> brands = [
     price: 50.0,
     image: "",
   ),
+
+
+
+
 ];
+
+class gDart {
+  
+}

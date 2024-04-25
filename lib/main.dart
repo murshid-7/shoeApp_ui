@@ -1,10 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:sneaker_store/screens/get_start_page.dart';
-import 'package:sneaker_store/screens/home_page.dart';
-import 'package:sneaker_store/screens/login_page.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:sneaker_store/models/cart_model/cart_model.dart';
+import 'package:sneaker_store/models/shoe_model.dart';
 import 'package:sneaker_store/screens/splash_screen.dart';
 
-void main() {
+Future<void> main() async {
+  await Hive.initFlutter();
+  if (!Hive.isAdapterRegistered(ShoeModelAdapter().typeId)) {
+    Hive.registerAdapter(ShoeModelAdapter());
+  }
+  if (!Hive.isAdapterRegistered(CartModelAdapter().typeId)) {
+    Hive.registerAdapter(CartModelAdapter());
+  }
   runApp(const MyApp());
 }
 
@@ -15,10 +24,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-    ,
+
       // home: SplashScreen(),
-      // home: GetStart(),
-      // home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }
