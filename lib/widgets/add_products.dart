@@ -17,6 +17,8 @@ class _AddProductState extends State<AddProduct> {
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController discriptionController = TextEditingController();
+  String dropdown = 'Adidas';
+  var items = ['Adidas', 'Puma', 'Nike', 'Reebok'];
 
   Future<void> _getImage() async {
     final ImagePicker _picker = ImagePicker();
@@ -110,9 +112,18 @@ class _AddProductState extends State<AddProduct> {
                 ),
               ),
               const SizedBox(height: 20.0),
+              DropdownButton(
+                  value: dropdown,
+                  items: items.map((String items) {
+                    return DropdownMenuItem(value: items, child: Text(items));
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdown = newValue!;
+                    });
+                  }),
               ElevatedButton(
                 onPressed: () {
-                  // Add product functionality
                   onAddShoe();
                 },
                 style: ElevatedButton.styleFrom(
