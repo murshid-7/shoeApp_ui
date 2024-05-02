@@ -13,7 +13,7 @@ class CartPage extends StatelessWidget {
         backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
         title: Text(
-          'Your Cart',
+          '$totalPrice',
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -29,6 +29,7 @@ class CartPage extends StatelessWidget {
                 title: data.name,
                 subtitle: data.price,
                 index: index,
+                image: data.image,
               );
             },
           );
@@ -41,6 +42,7 @@ class CartPage extends StatelessWidget {
     required int index,
     required String title,
     required String subtitle,
+    required String image,
   }) {
     return Column(
       children: [
@@ -49,11 +51,9 @@ class CartPage extends StatelessWidget {
         ),
         Card(
           elevation: 6,
-          color: Colors.amber,
+          color: Colors.white,
           margin: EdgeInsets.symmetric(horizontal: 16),
           child: ListTile(
-            leading: Image.asset('assets/images/shoesz industries (1).png',
-                width: 50, height: 50),
             title: Text(title),
             subtitle: Text(subtitle),
             trailing: Row(
@@ -76,5 +76,15 @@ class CartPage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  double totalPrice = 0;
+  double cartTotalPrice() {
+    List<CartModel> cartItem = [];
+
+    for (var cartItem in cartItem) {
+      totalPrice += double.parse(cartItem.price);
+    }
+    return totalPrice;
   }
 }

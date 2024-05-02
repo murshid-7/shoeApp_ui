@@ -40,7 +40,6 @@ class GetStart extends StatelessWidget {
               },
             )),
             child: Container(
-              
               decoration: BoxDecoration(
                   color: Colors.black, borderRadius: BorderRadius.circular(12)),
               padding: EdgeInsets.all(24.0),
@@ -55,4 +54,3 @@ class GetStart extends StatelessWidget {
     );
   }
 }
-

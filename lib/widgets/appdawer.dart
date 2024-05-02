@@ -1,10 +1,15 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'dart:async';
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sneaker_store/screens/admin_screen.dart';
 import 'package:sneaker_store/screens/get_start_page.dart';
-import 'package:sneaker_store/widgets/add_products.dart';
+import 'package:sneaker_store/screens/login_page.dart';
+import 'package:sneaker_store/screens/add_products.dart';
 import 'package:sneaker_store/screens/product_chart.dart';
 
 class Drawer1 extends StatelessWidget {
@@ -14,6 +19,14 @@ class Drawer1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> LogoutFuncion() async {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      sharedPreferences.setBool('key', false);
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => LoginScreen()));
+    }
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -51,31 +64,30 @@ class Drawer1 extends StatelessWidget {
                   .push(MaterialPageRoute(builder: (context) => AdminScreen()));
             },
           ),
-          drawerWidget(
-            context: context,
-            name: 'Product Chart',
-            icon: Icons.bar_chart,
-            ontap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ProductChart()));
-            },
-          ),
-          drawerWidget(
-            context: context,
-            name: 'Add your Product',
-            icon: Icons.add,
-            ontap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => AddProduct()));
-            },
-          ),
+          // drawerWidget(
+          //   context: context,
+          //   name: 'Product Chart',
+          //   icon: Icons.bar_chart,
+          //   ontap: () {
+          //     Navigator.of(context).push(
+          //         MaterialPageRoute(builder: (context) => ProductChart()));
+          //   },
+          // ),
+          // drawerWidget(
+          //   context: context,
+          //   name: 'Add your Product',
+          //   icon: Icons.add,
+          //   ontap: () {
+          //     Navigator.of(context)
+          //         .push(MaterialPageRoute(builder: (context) => AddProduct()));
+          //   },
+          // ),
           drawerWidget(
             context: context,
             name: 'Logout',
             icon: Icons.logout,
             ontap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => GetStart()));
+              LogoutFuncion();
             },
           ),
         ],

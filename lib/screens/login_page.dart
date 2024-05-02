@@ -1,30 +1,42 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors
+
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:sneaker_store/widgets/login_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sneaker_store/main.dart';
 import 'package:sneaker_store/screens/home_page.dart';
+import 'package:sneaker_store/widgets/bottom_nav.dart';
 
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
-class LoginPage1 extends StatelessWidget {
-  LoginPage1({Key? key});
-
+class _LoginScreenState extends State<LoginScreen> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
-  signIn(BuildContext context) {
-    if (usernameController.text == 'username' &&
-        passwordController.text == 'user123') {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
+  void loginFunction(BuildContext ctx) async {
+    final userName = usernameController.text.trim();
+    final passWord = passwordController.text.trim();
+
+    if (userName == 'hello' && passWord == '123') {
+      log('UserName passowrd match');
+
+      final sharedprefer = await SharedPreferences.getInstance();
+      await sharedprefer.setBool(SAVE_KEY_NAME, true);
+
+      Navigator.of(ctx)
+          .pushReplacement(MaterialPageRoute(builder: (ctx) => BottomNav()));
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Incorrect username or password'),
-        ),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Incorrect username or password'),
+        backgroundColor: Colors.red,
+      ));
     }
   }
 
@@ -33,59 +45,73 @@ class LoginPage1 extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
+        child: Center(
+          child: Form(
+            key: formKey,
+            child: ListView(
               children: [
-                SizedBox(
-                  height: 100,
-                ),
-                Icon(
-                  Icons.lock,
-                  size: 100,
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Welcome back!',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                ),
-                Text('Enter your email and password'),
-                SizedBox(height: 25),
-                LoginField(
-                  controller: usernameController,
-                  hintText: 'Username',
-                  obsecure: false,
-                ),
-                SizedBox(height: 12),
-                LoginField(
-                  controller: passwordController,
-                  hintText: 'Password',
-                  obsecure: true,
-                ),
-                SizedBox(height: 5.0),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-
-                          
+                Column(
+                  children: [
+                    SizedBox(height: 100),
+                    Icon(Icons.lock, size: 100),
+                    SizedBox(height: 30),
+                    Text('Welcome Back',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w600)),
+                    Text('Enter your email and password'),
+                    SizedBox(height: 25),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: TextFormField(
+                        controller: usernameController,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                            hintText: 'Username'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Username is required';
+                          }
+                          return null;
                         },
-                        child: Text(
-                          'Forgot password?',
-
-                          style: TextStyle(color: Colors.grey[800]),
-                        ),
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 12),
-                ElevatedButton(
-                  onPressed: () => signIn(context),
-                  child: Text('Sign In'),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: TextFormField(
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                            hintText: 'Password'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Password is required';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    ElevatedButton.icon(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.black)),
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          loginFunction(context);
+                        } else {
+                          log('Data Is Empty');
+                        }
+                        loginFunction(context);
+                      },
+                      icon: Icon(Icons.check),
+                      label: Text(
+                        'Sign In',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),

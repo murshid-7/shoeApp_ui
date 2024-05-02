@@ -27,15 +27,14 @@ Widget roundedCarousel() {
               ),
             ],
             options: CarouselOptions(
-              autoPlay: true,
-              aspectRatio: 1,
-              height: 200,
-              
-              viewportFraction: 1,
-            ),
+                autoPlay: true,
+                aspectRatio: 2,
+                height: 270,
+                viewportFraction: 1),
           ),
         ),
       ),
     ],
   );
 }
+

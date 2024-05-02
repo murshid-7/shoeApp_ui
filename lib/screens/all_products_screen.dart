@@ -24,7 +24,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
               final data = cart[index];
               return ProductItem(
                 title: data.name,
-                subtitle: data.price,
+                subtitle: data.price.toString(),
                 index: index,
                 discription: '',
               );
@@ -48,11 +48,9 @@ class _AllProductScreenState extends State<AllProductScreen> {
         ),
         Card(
           elevation: 6,
-          color: Colors.amber,
+          color: Color.fromARGB(255, 255, 255, 255),
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: ListTile(
-            leading: Image.asset('assets/images/shoesz industries (1).png',
-                width: 50, height: 50),
             title: Text(title),
             subtitle: Text(subtitle),
             trailing: Row(

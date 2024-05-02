@@ -29,14 +29,12 @@ class EditShoeScreen extends StatefulWidget {
 class _EditStudentState extends State<EditShoeScreen> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _priceController = TextEditingController();
-  TextEditingController _discriptionController = TextEditingController();
 
   File? selectedImage;
   @override
   void initState() {
     _nameController = TextEditingController(text: widget.name);
     _priceController = TextEditingController(text: widget.price);
-    _discriptionController = TextEditingController(text: widget.discription);
     selectedImage = widget.imagePath != '' ? File(widget.imagePath) : null;
 
     super.initState();
@@ -46,7 +44,7 @@ class _EditStudentState extends State<EditShoeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Student'),
+        title: const Text('Edit Shoe Name'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -58,9 +56,7 @@ class _EditStudentState extends State<EditShoeScreen> {
                 radius: 80,
                 backgroundImage: selectedImage != null
                     ? FileImage(selectedImage!)
-                    : const AssetImage(
-                            "assets/WhatsApp Image 2023-10-16 at 2.19.59 PM.jpeg")
-                        as ImageProvider,
+                    : FileImage(File(widget.imagePath!)),
               ),
               const SizedBox(height: 10),
               ElevatedButton.icon(
@@ -85,16 +81,7 @@ class _EditStudentState extends State<EditShoeScreen> {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
-                  hintText: 'Enter the Age',
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextField(
-                controller: _discriptionController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  hintText: 'Enter the Address',
+                  hintText: 'Enter the Price',
                 ),
               ),
               const SizedBox(height: 20),
@@ -115,11 +102,16 @@ class _EditStudentState extends State<EditShoeScreen> {
   Future<void> editAll() async {
     final name = _nameController.text.trim();
     final price = _priceController.text.trim();
-    final discription = _discriptionController.text.trim();
     final image = selectedImage!.path;
-    if (name.isNotEmpty || price.isNotEmpty || discription.isNotEmpty) {
+    if (name.isNotEmpty || price.isNotEmpty) {
       final update = ShoeModel(
-          id: 1, name: name, image: image, price: price, quantity: 1);
+        id: 1,
+        name: name,
+        image: image,
+        price: price,
+        quantity: 1,
+        catagory: '',
+      );
       editShoes(widget.index, update);
     } else {
       return;

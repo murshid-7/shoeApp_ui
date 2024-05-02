@@ -1,8 +1,13 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, library_private_types_in_public_api, use_build_context_synchronously
+
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:sneaker_store/screens/home_page.dart'; // Import your home page here
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sneaker_store/main.dart';
+import 'package:sneaker_store/screens/home_page.dart';
+import 'package:sneaker_store/screens/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key});
@@ -14,15 +19,11 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    checkLogin();
     super.initState();
-    Future.delayed(Duration(seconds: 5),navigateToHomeScreen);
   }
 
-  void navigateToHomeScreen() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => HomeScreen()),
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +38,30 @@ class _SplashScreenState extends State<SplashScreen> {
               fit: BoxFit.cover,
             ),
           ),
-          SizedBox(height: 20),
           Text(
-            'Loading, please wait...',
-            style: TextStyle(color: Colors.white),
+            'SHOEZO',
+            style: TextStyle(color: Colors.white, fontSize: 20),
           )
         ],
       ),
     );
+  }
+
+  Future<void> loginfn() async {
+    await Future.delayed(Duration(seconds: 3));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+      return LoginScreen();
+    }));
+  }
+
+  Future<void> checkLogin() async {
+    final sharedperfer = await SharedPreferences.getInstance();
+    final UserLogin = sharedperfer.getBool(SAVE_KEY_NAME);
+    if (UserLogin == null || UserLogin == false) {
+      loginfn();
+    } else {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => HomeScreen()));
+    }
   }
 }

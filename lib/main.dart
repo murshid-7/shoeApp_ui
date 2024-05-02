@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sneaker_store/models/cart_model/cart_model.dart';
 import 'package:sneaker_store/models/shoe_model.dart';
+import 'package:sneaker_store/screens/home_page.dart';
+import 'package:sneaker_store/screens/login_page.dart';
 import 'package:sneaker_store/screens/splash_screen.dart';
+
+const SAVE_KEY_NAME = 'Userlogin';
 
 Future<void> main() async {
   await Hive.initFlutter();
@@ -25,8 +29,9 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      // home: SplashScreen(),
+      // home: LoginScreen(),
       home: SplashScreen(),
+      // HomeScreen()
     );
   }
 }

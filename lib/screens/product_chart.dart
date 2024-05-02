@@ -6,8 +6,10 @@ class ProductChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('product chart'),
+      body: SafeArea(
+        child: Center(
+          child: Text('product chart'),
+        ),
       ),
     );
   }

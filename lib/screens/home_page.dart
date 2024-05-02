@@ -20,7 +20,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     getAllShoes();
     return Scaffold(
-      // appBar: AppBar(),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
@@ -43,37 +42,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(8),
-        child: Container(
-          padding: EdgeInsets.all(12),
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              BottomNavWidget(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
-                  },
-                  icon: Icons.home),
-              BottomNavWidget(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CartPage()),
-                    );
-                  },
-                  icon: Icons.shopping_basket),
-              BottomNavWidget(onTap: () {}, icon: Icons.person),
-            ],
-          ),
         ),
       ),
       drawer: Drawer1(),
@@ -100,54 +68,30 @@ Widget buildShoeList(List<ShoeModel> shoe) {
                       name: data.name,
                       price: data.price.toString(),
                       disciption: '',
+                      image: data.image,
                     ),
                   ),
                 );
               },
-              child: Container(
-                color: Colors.redAccent,
+              child: Card(
+                margin: EdgeInsets.all(5),
+                color: Colors.white10,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Image.file(File(data.image)),
+                    Card(
+                        child: Image.file(
+                      File(data.image),
+                      height: 120,
+                      width: 120,
+                      fit: BoxFit.fill,
+                    )),
                     Text(data.name),
-                    Text(data.price.toString()),
-                    ElevatedButton(
-                        onPressed: () {
-                          final cartitem = CartModel(
-                            id: 1,
-                            name: data.name,
-                            image: '',
-                            price: data.price.toString(),
-                            quantity: 1,
-                          );
-                          addShoesCart(cartitem);
-                        },
-                        child: Text('Add to Cart'))
+                    Text('Price:${data.price}'),
+                    Text('Brand: ${data.catagory}'),
                   ],
                 ),
               ),
             );
           },
         );
-}
-
-class BottomNavWidget extends StatelessWidget {
-  final IconData icon;
-  final VoidCallback onTap;
-
-  const BottomNavWidget({Key? key, required this.icon, required this.onTap})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Icon(
-        icon,
-        color: Color.fromARGB(255, 253, 253, 253),
-        size: 28,
-      ),
-    );
-  }
 }

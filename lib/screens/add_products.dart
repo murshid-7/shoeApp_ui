@@ -26,7 +26,7 @@ class _AddProductState extends State<AddProduct> {
 
     if (image != null) {
       setState(() {
-        _imageFile = File(image.path); // Convert XFile to File
+        _imageFile = File(image.path);
       });
     }
   }
@@ -48,8 +48,7 @@ class _AddProductState extends State<AddProduct> {
                 child: Container(
                   padding: const EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
-                    color: Colors.black
-                        .withOpacity(0.1), // Transparent black background
+                    color: Colors.black.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Row(
@@ -57,16 +56,14 @@ class _AddProductState extends State<AddProduct> {
                     children: [
                       Icon(
                         Icons.add_a_photo,
-                        color: Colors.black
-                            .withOpacity(0.6), // Light black icon color
+                        color: Colors.black.withOpacity(0.6),
                       ),
                       const SizedBox(width: 10),
                       Text(
                         'Add Image',
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.black
-                              .withOpacity(0.6), // Light black text color
+                          color: Colors.black.withOpacity(0.6),
                         ),
                       ),
                     ],
@@ -93,6 +90,7 @@ class _AddProductState extends State<AddProduct> {
               ),
               const SizedBox(height: 10.0),
               TextField(
+                controller: priceController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'Price',
@@ -125,6 +123,7 @@ class _AddProductState extends State<AddProduct> {
               ElevatedButton(
                 onPressed: () {
                   onAddShoe();
+                  clearControllers();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
@@ -155,12 +154,25 @@ class _AddProductState extends State<AddProduct> {
     final price = priceController.text.trim();
     final discription = discriptionController.text.trim();
     if (name.isNotEmpty || price.isNotEmpty || discription.isNotEmpty) {
-      final shoe =
-          ShoeModel(id: 1, name: name, image: '', price: price, quantity: 1);
+      final shoe = ShoeModel(
+        id: 1,
+        name: name,
+        image: _imageFile!.path,
+        price: price,
+        quantity: 1,
+        catagory: dropdown,
+      );
       addShoes(shoe);
-      print('added');
+      // Navigator.of(context).pop();
+      // print('added');
     } else {
       return;
     }
+  }
+
+  clearControllers() {
+    nameController.clear();
+    priceController.clear();
+    discriptionController.clear();
   }
 }
